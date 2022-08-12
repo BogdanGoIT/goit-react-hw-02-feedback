@@ -1,4 +1,7 @@
 import { Component } from "react";
+import { Statistics } from "./Statistics/Statistics";
+import { FeedbackOptions } from "./FeedbackOptions/FeedbackOptions";
+import { Section } from "./Section/Section";
 
 export class App extends Component {
 
@@ -19,29 +22,36 @@ export class App extends Component {
   }
 
 
+
+
   render() {
+    const { good, bad, neutral } = this.state;
+
     const total = this.countTotalFeedback();
+
+    const totalFeadback = (good / total) * 100;
+    // console.log(totalFeadback);
+
+
 
     // в.1
     // const { good, neutral, bad } = this.state;
     // const countTotalFeedback = good + neutral + bad;
     
     return (
-      <div>
-        <h2>Please live feadback</h2>
+      <>
+      
+        <Section title="Please live feadback" />
+        <FeedbackOptions options={this.state} onLeaveFeedback={this.handleClick} />
 
-        {Object.keys(this.state).map(key => (
-          <button key={key} onClick={() => this.handleClick(key)}>{key}</button>
-        ))}
         
-        <h2>Statistics</h2>
+        <Section title="Statistics" />
+        <Statistics good={good} neutral={neutral} bad={bad} total={total} positivePercentage={totalFeadback} />
 
-          <p>Good: {this.state.good}</p>
-          <p>Neutral: {this.state.neutral}</p>
-          <p>Bad: {this.state.bad}</p>
-          <p>Total: {total}</p>
+        
+      </>
+        
 
-      </div>
     )
   }
 }
