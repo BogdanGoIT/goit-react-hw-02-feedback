@@ -41,12 +41,13 @@ export class App extends Component {
     return (
       <>
       
-        <Section title="Please live feadback" />
-        <FeedbackOptions options={this.state} onLeaveFeedback={this.handleClick} />
+        <Section title="Please live feadback" >
+          <FeedbackOptions options={this.state} onLeaveFeedback={this.handleClick} />
+        </ Section>
 
-        
-        <Section title="Statistics" />
-        <Statistics good={good} neutral={neutral} bad={bad} total={total} positivePercentage={totalFeadback} />
+        <Section title="Statistics" >
+          <Statistics good={good} neutral={neutral} bad={bad} total={total} positivePercentage={totalFeadback} />
+        </ Section >
 
         
       </>
